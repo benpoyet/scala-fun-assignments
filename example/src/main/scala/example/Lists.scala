@@ -44,10 +44,13 @@ object Lists {
   def max(xs: List[Int]): Int = {
 
     def maxHelper(first: Int, rest: List[Int]): Int = {
-      if (rest.isEmpty) return first
-      val restMax = maxHelper(rest.head, rest.tail)
-      if (first > restMax) first
-      else restMax
+      if (rest.isEmpty) first
+      else {
+        val restMax = maxHelper(rest.head, rest.tail)
+        if (first > restMax) first
+        else restMax
+      }
+
     }
 
     if (xs.isEmpty) throw new NoSuchElementException()
