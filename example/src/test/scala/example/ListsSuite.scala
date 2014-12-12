@@ -37,7 +37,7 @@ class ListsSuite extends FunSuite {
    * which tests that its argument evaluates to `true`. So one of the simplest
    * successful tests is the following:
    */
-  test("one plus one is two")(assert(1 + 1 == 2))
+  test("one plus one is two")(assert(1 + 1 === 2))
 
 
   /**
@@ -47,7 +47,7 @@ class ListsSuite extends FunSuite {
    * This allows tests to be written in a more readable manner:
    */
   test("one plus one is three?") {
-    assert(1 + 1 == 3) // This assertion fails! Go ahead and fix it.
+    assert(1 + 1 != 3) // This assertion fails! Go ahead and fix it.
   }
 
 
@@ -72,7 +72,7 @@ class ListsSuite extends FunSuite {
    * We recommend to always use the `===` equality operator when writing tests.
    */
   test("details why one plus one is not three") {
-    assert(1 + 1 === 3) // Fix me, please!
+    assert(1 + 1 === 2) // Fix me, please!
   }
 
 
@@ -116,9 +116,23 @@ class ListsSuite extends FunSuite {
    */
   test("sum of a few numbers") {
     assert(sum(List(1,2,0)) === 3)
+    assert(sum(List(1)) === 1)
+    assert(sum(List(0)) === 0)
+    assert(sum(List(0, 2, 3)) === 5)
+    assert(sum(List(-1, -1, 3)) === 1)
+    assert(sum(List(5, 5, 5)) === 15)
+    assert(sum(List()) === 0)
   }
   
   test("max of a few numbers") {
     assert(max(List(3, 7, 2)) === 7)
+    assert(max(List(3, 7)) === 7)
+    assert(max(List(2)) === 2)
+    assert(max(List(3, -1, -5)) === 3)
+    assert(max(List(-1, -3, -5)) === -1)
+    assert(max(List(-3, -3, -3)) === -3)
+    intercept[NoSuchElementException] {
+      max(List())
+    }
   }
 }
