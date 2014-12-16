@@ -38,7 +38,26 @@ object Main {
    * Exercise 3
    */
   def countChange(money: Int, coins: List[Int]): Int = {
-    def iter
-    countChange()
+    if(money < 0 || coins.isEmpty) 0
+    else if(money == 0) 1
+    else countChange(money - coins.head, coins) + countChange(money, coins.tail)
+
+    /*
+    def loop(acc: Int, n: Int): Int
+      if (n <= 0) acc
+      else if(computes(n)) loop(acc+1, n-1)
+      else loop(acc, n-1)
+
+      def computes(numCoins: Int): Boolean = {
+
+        /*
+        def computeLoop(depth: Int, moneyLeft: Int): Boolean = {
+          if(moneyLeft == 0 && depth == numCoins) true
+        }
+        */
+        computeLoop(0, money)
+      }
+    loop(0, money)
+  */
   }
 }
